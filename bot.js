@@ -1,12 +1,10 @@
-const RtmClient  = require('@slack/client').RtmClient;
-// const WebClient  = require('@slack/client').WebClient;
-const RTM_EVENTS = require('@slack/client').RTM_EVENTS;
-const CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
 
-const bot_token = "xoxb-376760662918-375782643699-ZJ1waVnJf6nFkHjpNUQJZE1O";
-const rtm       = new RtmClient(bot_token);
-// const web       = new WebClient(bot_token);
-/*
+const { RTMClient, WebClient } = require('@slack/client');
+
+const token = "xoxb-376760662918-375782643699-ZJ1waVnJf6nFkHjpNUQJZE1O";
+const rtm = new RTMClient(token);
+const web = new WebClient(token);
+
 const botName = 'dory';
 
 const startCommand = "pr ";
@@ -17,11 +15,12 @@ var commands = [
 
 var store = [];
 
+/*
 rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, (data) => {
     console.log(`Authenticated to ${data.team.name}`);
-});
+});*/
 
-rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
+rtm.on('message', function handleRtmMessage(message) {
     if (message.type === 'message' && message.text) {
 		const userName = getUsernameFromId(message.user);
 
@@ -80,5 +79,3 @@ web.users.list((err, data) => {
 });
 
 rtm.start();
-
-*/
